@@ -1,6 +1,8 @@
 # django-portal-template
 
-This open-source repository is to get started quickly with a portal-type application.
+This open-source repository is to get started quickly with a portal-type application. 
+
+Courtesy of www.buzzerboy.com
 
 # Requirements
 
