@@ -21,8 +21,19 @@ In development of this portal template, I leveraged MIT Licensed AppSeed.us UI A
 ```bash
 $ /root/
 ```
-
 > This is the root directory where you cloned the repository. You can name is what ever you like.
+
+```bash
+$ /root/
+```
+> This is the root directory where you cloned the repository. You can name is what ever you like.
+
+```bash
+$ /root/environments
+```
+> This is the directory where the Vagrantfile and Vagrant setup is located. Vagrant is specifically helpful in setting up a linux based virtual environment. But,
+> if you're using python on your Windows or Mac, then you can ignore this directory.
+
 
 
 
