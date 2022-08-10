@@ -20,8 +20,9 @@ In development of this portal template, I leveraged MIT Licensed AppSeed.us UI A
 
 ```bash
 $ /root/
-# This is the root directory where you cloned the repository. You can name is what ever you like.
 ```
+
+> This is the root directory where you cloned the repository. You can name is what ever you like.
 
 
 
