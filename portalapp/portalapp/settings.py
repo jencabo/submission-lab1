@@ -22,7 +22,7 @@ from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TEMPLATE_DIR = os.path.join(CORE_DIR, "apps/html5_ui")  # ROOT dir for templates
+TEMPLATE_DIR = os.path.join(CORE_DIR, "html5_ui")  # ROOT dir for templates
 
 
 # Quick-start development settings - unsuitable for production
