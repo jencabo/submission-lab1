@@ -11,3 +11,9 @@ The following tools must be installed on your Windows machine:
 2. VisualStudio Code (https://code.visualstudio.com/) - We use this as an IDE
 3. Docker (https://www.docker.com/) - We use this as a virtualization tool for deploying the QA and Production environments
 
+# Special Acknowledgements
+
+In development of this portal template, I leveraged MIT Licensed AppSeed.us UI Aargon Dashboard Freeware.
+
+
+
