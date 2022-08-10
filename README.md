@@ -15,5 +15,13 @@ The following tools must be installed on your Windows machine:
 
 In development of this portal template, I leveraged MIT Licensed AppSeed.us UI Aargon Dashboard Freeware.
 
+# Directory Structure
+
+
+```bash
+$ /root/
+# This is the root directory where you cloned the repository. You can name is what ever you like.
+```
+
 
 
