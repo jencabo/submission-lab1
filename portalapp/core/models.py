@@ -21,7 +21,7 @@ from django.contrib.auth.models import User
 import uuid
 
 #CORE MODELS
-class SupportedLanguages(models.Model):
+class SupportedLanguage(models.Model):
     languageKey = models.CharField(max_length=4)
     description = models.CharField(max_length=255)
     flagURL = models.TextField
@@ -50,7 +50,7 @@ class AuditableBaseModel(models.Model):
         abstract = True
 
 class MutlilingualBaseModel(AuditableBaseModel):
-    language = models.ForeignKey(SupportedLanguages, on_delete=models.DO_NOTHING)
+    language = models.ForeignKey(SupportedLanguage, on_delete=models.DO_NOTHING)
     obj_lang_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
     class Meta:
