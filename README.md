@@ -80,3 +80,36 @@ $ /root/portalapp/html5_ui/main
 ```
 > These are the main application directories that are for your context-specific system. This is like the core of your system. You can either develop your entire application in here, or add additional applications using django-admin startapp, but trigger them from main.
 
+# Getting Started
+> This project is designed to be operating system agnostic. It leverages Vagrant and VirtualBox-based virtualization environment to create development application server. Therefore, it is important to make sure that Vagrant is properly installed and operational.
+
+```bash
+Launch in Command Prompt or Terminal 
+$ cd/to/the/root/directory
+$ cd environments 
+
+Launch Vagrant in terminal where we can run the development server
+$ vagrant up
+$ vagrant ssh
+
+Depending on your system, you may have to wait pass the established time-out. 
+$ vagrant ssh
+$ cd /project_data/
+$ cd portalapp
+
+If you get an error here, then try these steps to shutdown vagrant and start it again, otherwise, skip these.
+$ exit
+$ vagrant halt
+$ vagrant up
+$ vagrant ssh
+
+Continue if you did not get a directory not found error on cd portalapp:
+$ python3 manage.py makemigrations
+$ python3 manage.py collectstatic
+
+Enter 'yes' to continue loading up the static files.
+$ python manage.py migrate
+$ python manage.py runserver
+
+Now open up a web-browser, and go to http://localhost/
+```
