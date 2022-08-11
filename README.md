@@ -39,4 +39,25 @@ $ /root/portalapp
 ```
 > This is the directory where the django project is located for the portal itself. 
 
+```bash
+$ /root/portalapp/apps
+```
+> This is the directory contains all the apps that are part of the project. If you add additional apps to your project, use django-admin here to add additional apps. 
 
+```bash
+$ /root/portalapp/core
+```
+> This is the directory contains all core functionality of the portal. It is not recommended to update code in here. This is beacuse you can update the core as new version come to augment functionality for your portal.
+
+
+```bash
+$ /root/portalapp/html5_ui
+```
+> This is the directory contains the HTML5-based theme, and user-interfaces for the app. To create code-specialization segregation, this is where the front-end engineers can focus.
+
+```bash
+$ /root/portalapp/nginx
+$ /root/portalapp/staticfiles
+```
+> These are system directories. If your hosting environment requires nginx, you can augment your context specific configuration in here.
+> The staticfiles folder holds all the static files here if they are hosted on the app server.
