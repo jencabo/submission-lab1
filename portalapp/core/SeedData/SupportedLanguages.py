@@ -12,9 +12,9 @@ class SupportedLanguages_SeedData:
             SupportedLanguage.objects.all().delete()
 
         data =  [
-                    {'description': 'Spanish', 'languageKey': 'es'},
-                    {'description': 'Francais (CA)', 'languageKey': 'fr'},
-                    {'description' : 'English (US)', 'languageKey': 'en'},
+                    {'description': 'Spanish', 'languageKey': 'es', 'flagPic': '\static\core\\flags\\spanish.png'},
+                    {'description': 'Francais (CA)', 'languageKey': 'fr', 'flagPic': '\static\core\\flags\\french.png'},
+                    {'description' : 'English (US)', 'languageKey': 'en', 'flagPic': '\static\core\\flags\\english.png'},
                 ]
         print ("Adding new data...")
 
@@ -23,6 +23,8 @@ class SupportedLanguages_SeedData:
             sl = SupportedLanguage()
             sl.description = k['description']
             sl.languageKey = k['languageKey']
+            sl.flagPic = k['flagPic']
+
             sl.save()
 
         print ("First: " + SupportedLanguage.objects.first().__str__())

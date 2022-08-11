@@ -8,8 +8,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm
 
+#Load CORE views to inherit from
+from core import views as CORE_VIEWS
+
 
 def login_view(request):
+    context = CORE_VIEWS.context_maker(request, {})
+
     form = LoginForm(request.POST or None)
 
     msg = None
@@ -28,7 +33,10 @@ def login_view(request):
         else:
             msg = 'Error validating the form'
 
-    return render(request, "authentication/login.html", {"form": form, "msg": msg})
+    context['form'] = form
+    context['msg'] = msg
+
+    return render(request, "authentication/login.html", context)
 
 
 def register_user(request):

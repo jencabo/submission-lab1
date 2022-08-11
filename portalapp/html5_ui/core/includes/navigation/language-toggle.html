@@ -1,4 +1,4 @@
-
+{% load i18n %}
 <!-- language toggle icon and sub menu-->
   <!-- 
     
@@ -7,7 +7,7 @@
   <li class="nav-item dropdown" data-toggle="tooltip" data-original-title="Toggle language">
     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <i class="fas fa-globe"></i>
-      <span class="nav-link-inner--text d-lg-none">Language</span>
+      <span class="nav-link-inner--text d-lg-none">{% trans "Language" %}</span>
     </a>
 
     <div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right  py-0 overflow-hidden">
@@ -17,9 +17,7 @@
       </div>
       <!-- List group -->
       <div class="list-group list-group-flush">
-        {% if request.user.profile %}
-
-          {% for language in request.user.profile.tenant.supported_languages %}
+        {% for language in SupportedLanguages %}
               <a href="{% url 'togglelanguage' language_id=language.id %}" class="list-group-item list-group-item-action">
                 <div class="row align-items-center">
                   <div class="col-auto">
@@ -38,27 +36,6 @@
                 </div>
                </a>
           {% endfor %}
-        {% else %}
-          {% for language in tenant.supported_languages %}
-          <a href="{% url 'togglelanguage' language_id=language.id %}" class="list-group-item list-group-item-action">
-            <div class="row align-items-center">
-              <div class="col-auto">
-                <!-- Avatar -->
-                <img alt="{{ language.description }}" src="{{ language.flag_url }}" class="avatar rounded-circle">
-              </div>
-              <div class="col ml--2">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div>
-                    <h4 class="mb-0 text-sm">{{ language.description }}</h4>
-                  </div>
-                  <div class="text-right text-muted">
-                  </div>
-                </div>
-              </div>
-            </div>
-            </a>
-          {% endfor %}
-        {% endif %}              
       </div>
     </div>
 

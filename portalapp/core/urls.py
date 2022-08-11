@@ -15,9 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+import core
 
 urlpatterns = [
     path('admin/', admin.site.urls),          # Django admin route
     path("", include("apps.authentication.urls")), # Auth routes - login / register
-    path("", include("apps.main.urls"))             # UI Kits Html files
+    path("", include("apps.main.urls")),             # UI Kits Html files
+
+
+    #Language Toggle
+    path('togglelanguage/BJL192PP<int:language_id>TTO92PP123PP/', core.views.togglelanguage, name='togglelanguage'),
+
+
 ]
