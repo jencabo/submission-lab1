@@ -1,7 +1,7 @@
-from core.seed_data import SupportedLanguages
-from core.seed_data.SupportedLanguages import SupportedLanguages_SeedData
+from core.SeedData import SupportedLanguages
+from core.SeedData.SupportedLanguages import SupportedLanguages_SeedData
 
-class SeedData:
+class SeedDataLoader:
 
     @staticmethod
     def load(delete_old_data = True):
