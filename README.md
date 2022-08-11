@@ -46,9 +46,10 @@ $ /root/portalapp/apps
 
 ```bash
 $ /root/portalapp/core
+$ /root/portalapp/apps/static/core
+$ /root/portalapp/html5_ui/core
 ```
-> This is the directory contains all core functionality of the portal. It is not recommended to update code in here. This is beacuse you can update the core as new version come to augment functionality for your portal.
-
+> These are the directories that contains all core functionality, static assets like CSS, JS etc and html5-based user interfacee of the portal. It is not recommended to update code in here. This is beacuse you can update the core as new version come to augment functionality for your portal.
 
 ```bash
 $ /root/portalapp/html5_ui
@@ -61,3 +62,21 @@ $ /root/portalapp/staticfiles
 ```
 > These are system directories. If your hosting environment requires nginx, you can augment your context specific configuration in here.
 > The staticfiles folder holds all the static files here if they are hosted on the app server.
+
+```bash
+$ /root/portalapp/apps/authentication
+$ /root/portalapp/html5_ui/authentication
+
+$ /root/portalapp/apps/sample
+$ /root/portalapp/apps/html5_ui/sample
+
+```
+> These are applications supplied with this template. The sample app contains example views, models, and urls that demonstrate how to use this framework template. The authentication app faciliates secure user-login and related functionalities.
+
+```bash
+$ /root/portalapp/apps/main
+$ /root/portalapp/static/main
+$ /root/portalapp/html5_ui/main
+```
+> These are the main application directories that are for your context-specific system. This is like the core of your system. You can either develop your entire application in here, or add additional applications using django-admin startapp, but trigger them from main.
+
