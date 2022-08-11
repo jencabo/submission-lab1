@@ -25,6 +25,10 @@ CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(CORE_DIR, "html5_ui")  # ROOT dir for templates
 
 
+ROOT_URLCONF = 'core.urls'
+LOGIN_REDIRECT_URL = "home"  # Route defined in apps/sample/urls.py
+LOGOUT_REDIRECT_URL = "home"  # Route defined in apps/sample/urls.py
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -40,6 +44,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'core',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
