@@ -34,5 +34,9 @@ $ /root/Graphics
 ```
 > This is the directory where the saw images are located for use within the portal. You can use it to store your raw images as well. Exported PNG or SVG files are located inside the static directory as described later on.
 
+```bash
+$ /root/portalapp
+```
+> This is the directory where the django project is located for the portal itself. 
 
 
