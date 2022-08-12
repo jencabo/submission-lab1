@@ -117,3 +117,23 @@ $ python manage.py runserver
 
 Now open up a web-browser, and go to http://localhost/
 ```
+
+# Starting a new portal project using this template framework
+
+To start a new portal project, you must first create a new git repository where base off the code from here. Once you've created your own git repository, and cloned the code from here, you can then get started with the following steps:
+
+## Configure Application Configuration Settings in Main Application
+If you upgrade the portal template, you will only upgrade the core, so the main application is for your to use. Therefore you start by first updating the configuration in the main/apps.py
+> /root/portapp/apps/main/apps.py
+
+## Configure the database while in development
+This area is still pending.
+
+## Load Seed Data in the Database
+To run the application smoothly, some seed data has to be loaded. The core comes with some Seed Data already. To load seed data for core only:
+
+```bash
+$ python3 manage.py shell
+$ from core.SeedData.Loader import SeedDataLoader
+$ SeedDataLoader.load(True)
+```
