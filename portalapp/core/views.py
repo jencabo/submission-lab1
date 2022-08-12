@@ -13,7 +13,14 @@ from django.utils import translation
 from core import models
 
 def context_maker (request, context):
-    context['SupportedLanguages'] = models.SupportedLanguage.objects.all()
+    context['SupportedLanguages'] = models.SupportedLanguage.get_languages()
+
+    try:
+        context['language'] = models.SupportedLanguage.objects.get(languageKey=translation.get_language())
+    except models.SupportedLanguage.DoesNotExist:
+        context['language'] = models.SupportedLanguage.objects.first()
+
+    context['ApplicationSettings'] = models.ApplicationSetting.load_settings(language=context['language'])
     return context
 
 

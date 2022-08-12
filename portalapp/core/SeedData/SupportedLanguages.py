@@ -14,7 +14,7 @@ class SupportedLanguages_SeedData:
         data =  [
                     {'description': 'Spanish', 'languageKey': 'es', 'flagPic': '\static\core\\flags\\spanish.png'},
                     {'description': 'Francais (CA)', 'languageKey': 'fr', 'flagPic': '\static\core\\flags\\french.png'},
-                    {'description' : 'English (US)', 'languageKey': 'en', 'flagPic': '\static\core\\flags\\english.png'},
+                    {'description' : 'English (US)', 'languageKey': 'en-us', 'flagPic': '\static\core\\flags\\english.png'},
                 ]
         print ("Adding new data...")
 
