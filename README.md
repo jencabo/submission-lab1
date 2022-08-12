@@ -104,7 +104,10 @@ $ vagrant halt
 $ vagrant up
 $ vagrant ssh
 
-Continue if you did not get a directory not found error on cd portalapp:
+Continue if you did not get a directory not found error on cd portalapp, install the requirements using PIP:
+$ pip install -r requirements.txt
+
+Make migrations and collect static files
 $ python3 manage.py makemigrations
 $ python3 manage.py collectstatic
 
