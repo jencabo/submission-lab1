@@ -109,7 +109,7 @@ $ pip install -r requirements.txt
 
 Make migrations and collect static files
 $ python3 manage.py makemigrations
-$ python3 manage.py collectstatic
+$ python3 manage.py collectstatic --no-input
 
 Enter 'yes' to continue loading up the static files.
 $ python manage.py migrate
