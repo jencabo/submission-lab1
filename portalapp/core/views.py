@@ -28,4 +28,5 @@ def togglelanguage(request, language_id):
     language = models.SupportedLanguage.objects.get(pk=language_id)
 
     translation.activate(language.languageKey)
+    print("REFERRER: " + request.META.get('HTTP_REFERER'))
     return redirect(request.META.get('HTTP_REFERER'))

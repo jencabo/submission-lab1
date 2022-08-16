@@ -7,7 +7,7 @@ Courtesy of www.buzzerboy.com
 # Requirements
 
 The following tools must be installed on your Windows machine:
-1. Vagrant (vagrantup.com) - We use this as a virtualization tool to run linux as a development server
+1. Vagrant (https://www.vagrantup.com) - We use this as a virtualization tool to run linux as a development server
 2. VisualStudio Code (https://code.visualstudio.com/) - We use this as an IDE
 3. Docker (https://www.docker.com/) - We use this as a virtualization tool for deploying the QA and Production environments
 4. Oracle VirtualBox virtualization environment (https://www.virtualbox.org/) - This is the underlying provider that Vagrant uses to support a virtualized development environment.
