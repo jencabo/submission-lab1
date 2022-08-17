@@ -129,11 +129,21 @@ If you upgrade the portal template, you will only upgrade the core, so the main 
 ## Configure the database while in development
 This area is still pending.
 
-## Load Seed Data in the Database
+## Create a System Super User, and Load Seed Data in the Database
 To run the application smoothly, some seed data has to be loaded. The core comes with some Seed Data already. To load seed data for core only:
 
 ```bash
+$ python manage.py createsuperuser 
+
+Follow the steps and create a user and give this user a strong password. This is the user account that will be used to create SeedData below
+
 $ python3 manage.py shell
 $ from core.SeedData.Loader import SeedDataLoader
 $ SeedDataLoader.load(True)
+
+Now, load application settings that we described earlier in Main App
+
+$ from apps.main.apps load ApplicationSettings
+$ ApplicationSettings.load()
+
 ```
