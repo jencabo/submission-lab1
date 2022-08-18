@@ -1,3 +1,4 @@
+{% load static %}
 <!--
 =========================================================
 * Argon Dashboard - v1.2.0
@@ -23,6 +24,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="canonical" href="https://appseed.us/admin-dashboards/django-dashboard-argon">
   
+  <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+  <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+
   <title>
     {{ ApplicationSettings.APP_TITLE }} - {% block title %} {{ ApplicationSettings.APP_SLOGAN }} {% endblock %}
   </title>
