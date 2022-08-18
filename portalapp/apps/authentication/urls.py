@@ -14,7 +14,8 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(), name="logout"),
 
 
-    #Tenant and Team
+    #Tenant, Team, and User
     path('myteam/BJL192PPTTO92PP123PP/', views.myteam, name='myteam'),
+    path('userprofile/BJL192PPTTO92PP123PP/', views.userprofile, name='userprofile'),
 
 ]

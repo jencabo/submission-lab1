@@ -20,11 +20,15 @@ import core
 urlpatterns = [
     path('admin/', admin.site.urls),          # Django admin route
     path("", include("apps.authentication.urls")), # Auth routes - login / register
-    path("", include("apps.main.urls")),             # UI Kits Html files
-
 
     #Language Toggle
     path('togglelanguage/BJL192PP<int:language_id>TTO92PP123PP/', core.views.togglelanguage, name='togglelanguage'),
+
+    #Tenant
+    path('viewcompanyprofile/BJL192PPTTO92PP123PP/', core.views.companyprofile, name='companyprofile'),
+
+    #Main
+    path("", include("apps.main.urls")),             # UI Kits Html files
 
 
 ]

@@ -68,3 +68,8 @@ def register_user(request):
 def myteam (request):
     context = CORE_VIEWS.context_maker(request, {})
     return render(request, "authentication/myteam.html", context)
+
+@login_required(login_url="/login/")
+def userprofile (request):
+    context = CORE_VIEWS.context_maker(request, {})
+    return CORE_VIEWS.template_loader(request, context, 'authentication/userprofile.html')
