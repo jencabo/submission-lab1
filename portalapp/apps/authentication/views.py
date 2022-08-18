@@ -7,6 +7,7 @@ Copyright (c) 2019 - present AppSeed.us
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm
+from django.contrib.auth.decorators import login_required
 
 #Load CORE views to inherit from
 from core import views as CORE_VIEWS
@@ -62,3 +63,8 @@ def register_user(request):
         form = SignUpForm()
 
     return render(request, "authentication/register.html", {"form": form, "msg": msg, "success": success})
+
+@login_required(login_url="/login/")
+def myteam (request):
+    context = CORE_VIEWS.context_maker(request, {})
+    return render(request, "authentication/myteam.html", context)
