@@ -52,4 +52,4 @@ def togglelanguage(request, language_id):
 
 def companyprofile(request):
     context = context_maker(request, {})
-    return template_loader(request, context, 'core/companyprofile.html`')
+    return template_loader(request, context, 'core/companyprofile.html')
