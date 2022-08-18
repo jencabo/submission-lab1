@@ -72,4 +72,4 @@ def myteam (request):
 @login_required(login_url="/login/")
 def userprofile (request):
     context = CORE_VIEWS.context_maker(request, {})
-    return CORE_VIEWS.template_loader(request, context, 'authentication/userprofile.html')
+    return CORE_VIEWS.template_loader(request, context, 'authentication/profile.html')
