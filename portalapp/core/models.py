@@ -20,7 +20,8 @@
 #Necessary imports
 from django.db import models
 from django.contrib.auth.models import User
-import uuid
+import uuid, os
+from ckeditor.fields import RichTextField
 
 #CORE MODELS
 class SupportedLanguage(models.Model):
@@ -92,6 +93,37 @@ class Tenant(AuditableBaseModel):
         return self.companyName
 
 
+class TenantUser (AuditableBaseModel):
+
+    def upload_profile_file_name (instance, filename):
+       fname, fextension = os.path.splitext(filename)
+       s = "u_" + instance.id.__str__() + "__t_".__str__() + instance.tenant.id.__str__() + fextension
+       return os.path.join (instance.tenant.uuid.__str__(), "user", s)
+
+
+    tenant = models.ForeignKey(Tenant, on_delete=models.DO_NOTHING, related_name="team")
+
+
+#    userType = models.ForeignKey(UserType, on_delete=models.DO_NOTHING)
+
+    userObject = models.OneToOneField(User, related_name="profile", on_delete=models.DO_NOTHING)
+    address = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=255,blank=True)
+    postalcode = models.CharField(max_length=7, blank=True)
+    telephone = models.CharField(max_length=25, blank=True)
+    aboutme = RichTextField(blank=True)
+
+    address = models.OneToOneField(Address, on_delete=models.DO_NOTHING, related_name="tenantuser_address")
+    profilePicture = models.ImageField(null=True, blank=True, default="", upload_to=upload_profile_file_name)
+    notes = models.TextField(blank = True)
+    language = models.ForeignKey(SupportedLanguage, on_delete=models.DO_NOTHING, blank=True, null=True)
+
+    def __str__(self):
+#        return self.userObject.username + " @ " + self.tenant.companyName + " (" + self.userType.description + ")"
+        return self.userObject.username + " @ " + self.tenant.companyName
+
+    def getTenant(self):
+        return self.tenant.companyName
 
 
 class MutlilingualBaseModel(AuditableBaseModel):
