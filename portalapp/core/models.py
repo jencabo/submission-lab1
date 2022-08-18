@@ -13,6 +13,8 @@
 # --- so core portal app will include that functionality. 
 # All portals will also support multilingualism, so that functionalility will be part of the core 
 # --- as well. This will include a table for SupportedLanguages
+# All portals will have a tenant and team feature. This means more than one user can collaboratively 
+# --- work on items in the portal
 # -----------------------------------------------
 
 #Necessary imports
@@ -33,7 +35,6 @@ class SupportedLanguage(models.Model):
 
     def flag_img (self):
         return "<img id=flag'" + self.id.__str__() + "' src='" + self.flag_url + "'/>"
-
     @staticmethod
     def enable_language(languageKey):
         sl = SupportedLanguage.objects.get(languageKey=languageKey)
@@ -52,7 +53,6 @@ class SupportedLanguage(models.Model):
 		    return self.flagPic.url 
 
 
-
 #INHERITABLE MODELS
 class AuditableBaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -61,7 +61,38 @@ class AuditableBaseModel(models.Model):
     id = models.AutoField(primary_key=True)
 
     class Meta:
-        abstract = True
+       abstract = True
+
+class Address(AuditableBaseModel):
+
+    #address fields
+    street = models.CharField(max_length=255, blank=True)
+    street1 = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=255, blank=True)
+    state = models.CharField(max_length=255, blank=True)
+    country = models.CharField(max_length=255, blank=True)
+    postalcode = models.CharField(max_length=255, blank=True)
+    telephone = models.CharField(max_length=40, blank=True)
+    email = models.CharField(max_length=40, blank=True)
+
+    def __str__(self):
+        return self.street + '\n' + self.street1 + '\n' + self.city + '\n' + self.country + '\n' + self.postalcode
+
+class Tenant(AuditableBaseModel):
+    tenant_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    companyName = models.CharField(max_length=255, blank=True)
+    company_website = models.TextField
+    logo = models.ImageField(null=True, blank=True, default="", upload_to="settings/flags")
+
+    #addresses
+    billing_address = models.OneToOneField(Address, on_delete=models.DO_NOTHING, null=True, related_name='billing_tenant')
+    shipping_address = models.OneToOneField(Address, on_delete=models.DO_NOTHING, null=True, related_name='shipping_tenant')
+
+    def __str__(self):
+        return self.companyName
+
+
+
 
 class MutlilingualBaseModel(AuditableBaseModel):
     language = models.ForeignKey(SupportedLanguage, on_delete=models.DO_NOTHING)
