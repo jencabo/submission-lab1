@@ -16,7 +16,7 @@ env
 venv
 
 #vagrant
-environments/.vagrant
+environments/.vagrant/*
 
 # other
 .DS_Store
