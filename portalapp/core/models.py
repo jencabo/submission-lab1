@@ -82,12 +82,12 @@ class Address(AuditableBaseModel):
 class Tenant(AuditableBaseModel):
     tenant_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     companyName = models.CharField(max_length=255, blank=True)
-    company_website = models.TextField
+    company_website = models.TextField(null=True, blank=True)
     logo = models.ImageField(null=True, blank=True, default="", upload_to="settings/flags")
 
     #addresses
-    billing_address = models.OneToOneField(Address, on_delete=models.DO_NOTHING, null=True, related_name='billing_tenant')
-    shipping_address = models.OneToOneField(Address, on_delete=models.DO_NOTHING, null=True, related_name='shipping_tenant')
+    billing_address = models.OneToOneField(Address, on_delete=models.DO_NOTHING, null=True, related_name='billing_tenant', blank=True)
+    shipping_address = models.OneToOneField(Address, on_delete=models.DO_NOTHING, null=True, related_name='shipping_tenant', blank=True)
 
     def __str__(self):
         return self.companyName
@@ -98,7 +98,7 @@ class TenantUser (AuditableBaseModel):
     def upload_profile_file_name (instance, filename):
        fname, fextension = os.path.splitext(filename)
        s = "u_" + instance.id.__str__() + "__t_".__str__() + instance.tenant.id.__str__() + fextension
-       return os.path.join (instance.tenant.uuid.__str__(), "user", s)
+       return os.path.join (instance.tenant.tenant_uuid.__str__(), "user", s)
 
 
     tenant = models.ForeignKey(Tenant, on_delete=models.DO_NOTHING, related_name="team")
