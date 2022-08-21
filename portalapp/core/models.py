@@ -22,6 +22,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import uuid, os
 from ckeditor.fields import RichTextField
+from django.utils.crypto import get_random_string
 
 #CORE MODELS
 class SupportedLanguage(models.Model):
@@ -36,6 +37,7 @@ class SupportedLanguage(models.Model):
 
     def flag_img (self):
         return "<img id=flag'" + self.id.__str__() + "' src='" + self.flag_url + "'/>"
+
     @staticmethod
     def enable_language(languageKey):
         sl = SupportedLanguage.objects.get(languageKey=languageKey)
@@ -56,9 +58,16 @@ class SupportedLanguage(models.Model):
 
 #INHERITABLE MODELS
 class AuditableBaseModel(models.Model):
+
+    @staticmethod
+    def random_related_name():
+        return get_random_string(10);        
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+
+    last_updated_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True)
+
     id = models.AutoField(primary_key=True)
 
     class Meta:
@@ -92,17 +101,18 @@ class Tenant(AuditableBaseModel):
     def __str__(self):
         return self.companyName
 
+    def team_count(self):
+        return self.team.count()
 
 class TenantUser (AuditableBaseModel):
 
     def upload_profile_file_name (instance, filename):
        fname, fextension = os.path.splitext(filename)
        s = "u_" + instance.id.__str__() + "__t_".__str__() + instance.tenant.id.__str__() + fextension
-       return os.path.join (instance.tenant.tenant_uuid.__str__(), "user", s)
+       return os.path.join (".data",  instance.tenant.tenant_uuid.__str__(), "tenantUser", s)
 
 
     tenant = models.ForeignKey(Tenant, on_delete=models.DO_NOTHING, related_name="team")
-
 
 #    userType = models.ForeignKey(UserType, on_delete=models.DO_NOTHING)
 

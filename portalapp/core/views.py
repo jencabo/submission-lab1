@@ -53,3 +53,7 @@ def togglelanguage(request, language_id):
 def companyprofile(request):
     context = context_maker(request, {})
     return template_loader(request, context, 'core/companyprofile.html')
+
+def editcompanyprofile(request):
+    context = context_maker(request, {})
+    return template_loader(request, context, 'core/edit_companyprofile.html')

@@ -1,13 +1,13 @@
 {% extends 'core/layouts/base.html' %}
-
-{% block title %} Profile {% endblock title %}
+{% load i18n %}
+{% block title %} {% trans "Profile" %} {% endblock title %}
 
 
 {% block content %}
 
 
 <div class="header pb-6 d-flex align-items-center" 
-     style="min-height: 500px; background-image: url(/static/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+     style="min-height: 500px; background-image: url(/static/core/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
   <!-- Mask -->
   <span class="mask bg-gradient-default opacity-8"></span>
   <!-- Header container -->
@@ -15,13 +15,10 @@
     <div class="row">
       <div class="col-lg-7 col-md-10">
         <h1 class="display-2 text-white"> 
-          Hello {{ request.user.first_name }}
+          {% trans "Hello" %} {{ request.user.first_name }}
         </h1>
-        <p class="text-white mt-0 mb-5">This is your company profile page. You can use this screen to review information about your organization.</p>
-
-        {% if access_granted %}
-          <a href="{% url 'editcompanyprofile' %}" class="btn btn-neutral">Edit profile</a>
-        {% endif %}
+        <p class="text-white mt-0 mb-5">{% trans "This is your company profile page. You can use this screen to review information about your organization." %}</p>
+          <a href="{% url 'editcompanyprofile' %}" class="btn btn-neutral">{% trans "Edit company profile" %}</a>
       </div>
     </div>
   </div>
@@ -35,20 +32,19 @@
       <div class="card card-profile">
         <div class="row justify-content-center">
           <div class="col-lg-3 order-lg-2">
+            {% if request.user.profile.tenant.logo %}
             <div class="card-profile-image">
               <a href="{{ request.user.profile.tenant.website }}" target="_blank">
-                {% if request.user.profile.tenant.companyLogo_url %}
                   <img src="{{ request.user.profile.tenant.companyLogo_url }}" class="rounded-circle">
-                {% else %}
-                  <img src="/static/assets/img/theme/empty-company.png" class="rounded-circle">
-                {% endif %}
               </a>
             </div>
+            {% endif %}
           </div>
         </div>
         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-          <div class="d-flex justify-content-between">
-            <a href="{% url 'myteam' %}" class="btn btn-sm btn-info  mr-4 ">Team</a>
+          <div class="d-flex">
+            <a href="{% url 'myteam' %}" class="btn btn btn-info pl-5 pr-5 mr-4 ">Team</a>
+            {% include "main/includes/navigation/company_profile_nav.html" %}
           </div>
         </div>
         <div class="card-body pt-0">
@@ -57,44 +53,22 @@
               <div class="card-profile-stats d-flex justify-content-center">
                 <div>
                   <span class="heading"> {{ request.user.profile.tenant.team_count }}</span>
-                  <span class="description">Team Members</span>
+                  <span class="description">{% trans "Team Members" %}</span>
                 </div>
-                <div>
-                  <span class="heading"> {{ request.user.profile.tenant.client_count }}</span>
-                  <span class="description">Clients</span>
-                </div>
-                <div>
-                  <span class="heading"> {{ request.user.profile.tenant.job_count }}</span>
-                  <span class="description">Jobs</span>
-                </div>
-                <div>
-                  <span class="heading"> {{ request.user.profile.tenant.candidate_count }}</span>
-                  <span class="description">Candidates</span>
-                </div>
+                {% include "main/includes/counters/counters.html" %}
               </div>
             </div>
           </div>
           <div class="text-center">
             <h5 class="h3">
-              <!-- {{ request.user.username  }}  dynamic client company name          -->
               {{ request.user.profile.tenant.companyName }}
             </h5>
             <div class="h5 font-weight-300">
               <!-- {{ request.user.email }} -->
-              {{ request.user.profile.tenant.companySlogan }}
+              {{ request.user.profile.tenant.company_website }}
             </div>
-            <div class="h5 mt-4">
-              <i class="ni business_briefcase-24 mr-2"></i>Primary Account Holder - {{ request.user.profile.tenant.primary_account_name }}
-            </div>
-            <div>
-              <i class="ni education_hat mr-2"></i>
-              {{ request.user.profile.tenant.address }}
-              {{ request.user.profile.tenant.city }}, {{ request.user.profile.tenant.stateprovince }}
-              {{ request.user.profile.tenant.postalcode }}
-              Tel: {{ request.user.profile.tenant.telephone }}
-              Fax: {{ request.user.profile.tenant.fax }} <br/>
-              {{ request.user.profile.tenant.primary_account_email }}
-            </div>
+            <div class="h5 mt-4"><i class="ni business_briefcase-24 mr-2"></i>Billing Address - {{ request.user.profile.tenant.billing_address }}</div>
+            <div class="h5 mt-4"><i class="ni business_briefcase-24 mr-2"></i>Shipping Address - {{ request.user.profile.tenant.shipping_address }}</div>
           </div>
         </div>
       </div>

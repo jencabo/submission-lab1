@@ -26,6 +26,7 @@ urlpatterns = [
 
     #Tenant
     path('viewcompanyprofile/BJL192PPTTO92PP123PP/', core.views.companyprofile, name='companyprofile'),
+    path('editcompanyprofile/BJL192PPTTO92PP123PP/', core.views.editcompanyprofile, name='editcompanyprofile'),
 
     #Main
     path("", include("apps.main.urls")),             # UI Kits Html files
