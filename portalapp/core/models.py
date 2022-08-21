@@ -117,6 +117,7 @@ class TenantUser (AuditableBaseModel):
 #    userType = models.ForeignKey(UserType, on_delete=models.DO_NOTHING)
 
     userObject = models.OneToOneField(User, related_name="profile", on_delete=models.DO_NOTHING)
+
     address = models.CharField(max_length=255, blank=True)
     city = models.CharField(max_length=255,blank=True)
     postalcode = models.CharField(max_length=7, blank=True)
