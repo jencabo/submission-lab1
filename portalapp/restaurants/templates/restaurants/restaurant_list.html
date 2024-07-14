@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant List</title>
+</head>
+<body>
+    <h1>Restaurants</h1>
+    <a href="{% url 'restaurant_create' %}">Add New Restaurant</a>
+    <ul>
+        {% for restaurant in restaurants %}
+            <li>
+                <a href="{% url 'restaurant_detail' restaurant.pk %}">{{ restaurant.name }}</a>
+                <a href="{% url 'restaurant_delete' restaurant.pk %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

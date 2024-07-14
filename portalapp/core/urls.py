@@ -18,6 +18,9 @@ from django.urls import path, include
 import core
 
 urlpatterns = [
+    #Restaurants
+    path("", include('restaurants.urls')),
+    
     path('admin/', admin.site.urls),          # Django admin route
     path("", include("apps.authentication.urls")), # Auth routes - login / register
 
@@ -29,7 +32,5 @@ urlpatterns = [
     path('editcompanyprofile/BJL192PPTTO92PP123PP/', core.views.editcompanyprofile, name='editcompanyprofile'),
 
     #Main
-    path("", include("apps.main.urls")),             # UI Kits Html files
-
-
+    path("", include("apps.main.urls")),             # UI Kits Html files    
 ]
