@@ -120,6 +120,7 @@ class TenantUser (AuditableBaseModel):
 
     address = models.CharField(max_length=255, blank=True)
     city = models.CharField(max_length=255,blank=True)
+    country = models.CharField(max_length=255,blank=True)
     postalcode = models.CharField(max_length=7, blank=True)
     telephone = models.CharField(max_length=25, blank=True)
     aboutme = RichTextField(blank=True)

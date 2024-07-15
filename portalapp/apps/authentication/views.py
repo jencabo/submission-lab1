@@ -6,8 +6,9 @@ Copyright (c) 2019 - present AppSeed.us
 # Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm, SignUpForm
+from .forms import LoginForm, SignUpForm, UserProfileForm
 from django.contrib.auth.decorators import login_required
+from core.models import TenantUser
 
 #Load CORE views to inherit from
 from core import views as CORE_VIEWS
@@ -71,5 +72,14 @@ def myteam (request):
 
 @login_required(login_url="/login/")
 def userprofile (request):
-    context = CORE_VIEWS.context_maker(request, {})
-    return CORE_VIEWS.template_loader(request, context, 'authentication/profile.html')
+    user = request.user
+    tenantuser = TenantUser.objects.get(userObject=user)
+    print(tenantuser)
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=user, tenantuser=tenantuser)
+        if form.is_valid():
+            form.save()
+            return redirect('userprofile') 
+    else:
+        context = CORE_VIEWS.context_maker(request, {'form': UserProfileForm(instance=user, tenantuser=tenantuser)})
+        return CORE_VIEWS.template_loader(request, context, 'authentication/profile.html')
