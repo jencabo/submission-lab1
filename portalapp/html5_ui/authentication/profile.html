@@ -112,13 +112,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">First name</label>
-                    <input type="text" id="input-first-name" class="form-control" placeholder="First name" value="Lucky">
+                    <input type="text" id="input-first-name" class="form-control" placeholder="First name" value="{{ request.user.first_name }}">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Last name</label>
-                    <input type="text" id="input-last-name" class="form-control" placeholder="Last name" value="Jesse">
+                    <input type="text" id="input-last-name" class="form-control" placeholder="Last name" value="{{ request.user.last_name }}">
                   </div>
                 </div>
               </div>

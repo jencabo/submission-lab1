@@ -1,14 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Confirm Delete</title>
-</head>
-<body>
-    <h1>Are you sure you want to delete "{{ restaurant.name }}"?</h1>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Confirm</button>
-    </form>
-    <a href="{% url 'restaurant_list' %}">Cancel</a>
-</body>
-</html>
+{% extends 'core/layouts/base.html' %}
+
+{% block title %} Confirm Delete {% endblock title %}
+
+{% block content %}
+
+<div class="header pb-6 d-flex align-items-center" style="min-height: 500px; background-image: url(/static/core/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+    <!-- Mask -->
+    <span class="mask bg-gradient-default opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+            <div class="col-lg-10 col-md-10">
+                <h1 class="display-2 text-white"> 
+                    Are you sure you want to delete "{{ restaurant.name }}"?
+                </h1>
+                <p class="text-white mt-0 mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas volutpat dictum tristique. Aenean vitae velit et mauris cursus accumsan eu sit amet libero. Ut ac sem ex. Etiam ut tincidunt augue. In non augue in leo eleifend tincidunt. Donec posuere felis magna, sit amet consequat ipsum eleifend ac. Quisque id feugiat orci.</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-neutral" type="submit">Confirm</button> <a href="{% url 'restaurant_list' %}">Cancel</a>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+    {% include "core/includes/footer/footer.html" %}
+
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

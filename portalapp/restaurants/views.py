@@ -26,3 +26,14 @@ def restaurant_delete(request, pk):
         restaurant.delete()
         return redirect('restaurant_list')
     return render(request, 'restaurants/restaurant_confirm_delete.html', {'restaurant': restaurant})
+
+def restaurant_update(request, pk):
+    restaurant = get_object_or_404(Restaurant, pk=pk)
+    if request.method == 'POST':
+        form = RestaurantForm(request.POST, instance=restaurant)
+        if form.is_valid():
+            form.save()
+            return redirect('restaurant_list')
+    else:
+        form = RestaurantForm(instance=restaurant)
+    return render(request, 'restaurants/restaurant_form.html', {'form': form, 'title': 'Update Restaurant'})
