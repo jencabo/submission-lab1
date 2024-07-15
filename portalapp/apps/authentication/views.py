@@ -8,7 +8,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm, UserProfileForm
 from django.contrib.auth.decorators import login_required
-from core.models import TenantUser
 
 #Load CORE views to inherit from
 from core import views as CORE_VIEWS
@@ -71,15 +70,15 @@ def myteam (request):
     return render(request, "authentication/myteam.html", context)
 
 @login_required(login_url="/login/")
-def userprofile (request):
-    user = request.user
-    tenantuser = TenantUser.objects.get(userObject=user)
-    print(tenantuser)
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=user, tenantuser=tenantuser)
-        if form.is_valid():
-            form.save()
-            return redirect('userprofile') 
+def userprofile (request):  
+    if request.method == "POST":
+        userForm = UserProfileForm(request.POST, instance=request.user)
+        if userForm.is_valid():
+            userForm.save()
+            context = CORE_VIEWS.context_maker(request, {'userForm': userForm})
+            return CORE_VIEWS.template_loader(request, context, 'authentication/profile.html')
     else:
-        context = CORE_VIEWS.context_maker(request, {'form': UserProfileForm(instance=user, tenantuser=tenantuser)})
+        context = CORE_VIEWS.context_maker(request, {
+            'userForm': UserProfileForm(instance=request.user)
+        })
         return CORE_VIEWS.template_loader(request, context, 'authentication/profile.html')
